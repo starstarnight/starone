@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<!-- saved from url=(0155)http://localhost:63342/pythonProject3/%E8%87%AA%E5%B7%B1%E5%81%9A%E7%9A%84%E7%BD%91%E9%A1%B5.html?_ijt=oij7tq3sd2601nqh7org5c5220&_ij_reload=RELOAD_ON_SAVE -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>名侦探柯南</title>
+</head>
+<body>
+<h1>名侦探柯南经典人物合集</h1>
+<table border="2" cellpadding="60">
+    <tbody><tr>
+        <th>序号</th>
+        <th>姓名</th>
+        <th>性别</th>
+        <th>年龄</th>
+        <th>爱好</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>毛利小五郎</td>
+        <td>男</td>
+        <td>38</td>
+        <td>逞能</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>目暮十三</td>
+        <td>男</td>
+        <td>44</td>
+        <td>捉坏人</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>高木涉</td>
+        <td>男</td>
+        <td>26</td>
+        <td>捉坏人</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>佐藤美和子</td>
+        <td>女</td>
+        <td>28</td>
+        <td>捉坏人</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>土屋山笠</td>
+        <td>男</td>
+        <td>52</td>
+        <td>搞科研</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>服部平次</td>
+        <td>男</td>
+        <td>17</td>
+        <td>探案</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>远山和叶</td>
+        <td>女</td>
+        <td>17</td>
+        <td>合气道</td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>工藤新一</td>
+        <td>男</td>
+        <td>17</td>
+        <td>探案</td>
+    </tr>
+    <tr>
+        <td>9</td>
+        <td>毛利兰</td>
+        <td>女</td>
+        <td>17</td>
+        <td>空手道</td>
+    </tr>
+    <tr>
+        <td>10</td>
+        <td>江户川柯南</td>
+        <td>男</td>
+        <td>7</td>
+        <td>探案</td>
+    </tr>
+    <tr>
+        <td>11</td>
+        <td>吉田步美</td>
+        <td>女</td>
+        <td>7</td>
+        <td>弹钢琴</td>
+    </tr>
+    <tr>
+        <td>12</td>
+        <td>圆谷光彦</td>
+        <td>男</td>
+        <td>7</td>
+        <td>探险</td>
+    </tr>
+    <tr>
+        <td>13</td>
+        <td>小岛元太</td>
+        <td>男</td>
+        <td>7</td>
+        <td>吃</td>
+    </tr>
+    <tr>
+        <td>14</td>
+        <td>灰原哀</td>
+        <td>女</td>
+        <td>7</td>
+        <td>学习</td>
+    </tr>
+</tbody></table>
+
+<script>
+(function() {
+  var ws = new WebSocket('ws://' + window.location.host + '/jb-server-page?reloadServiceClientId=10');
+  ws.onmessage = function (msg) {
+      if (msg.data === 'reload') {
+          window.location.reload();
+      }
+      if (msg.data.startsWith('update-css ')) {
+          var messageId = msg.data.substring(11);
+          var links = document.getElementsByTagName('link');
+          for (var i = 0; i < links.length; i++) {
+              var link = links[i];
+              if (link.rel !== 'stylesheet') continue;
+              var clonedLink = link.cloneNode(true);
+              var newHref = link.href.replace(/(&|\?)jbUpdateLinksId=\d+/, "$1jbUpdateLinksId=" + messageId);
+              if (newHref !== link.href) {
+                clonedLink.href = newHref;
+              }
+              else {
+                var indexOfQuest = newHref.indexOf('?');
+                if (indexOfQuest >= 0) {
+                  // to support ?foo#hash 
+                  clonedLink.href = newHref.substring(0, indexOfQuest + 1) + 'jbUpdateLinksId=' + messageId + '&' + 
+                                    newHref.substring(indexOfQuest + 1);
+                }
+                else {
+                  clonedLink.href += '?' + 'jbUpdateLinksId=' + messageId;
+                }
+              }
+              link.replaceWith(clonedLink);
+          }
+      }
+  };
+})();
+</script></body></html>
